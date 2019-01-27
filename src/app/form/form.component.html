@@ -1,0 +1,23 @@
+<form [formGroup]="userForm" (ngSubmit)="onSubmit()">
+<div formArrayName="firstName">
+    <h3>User</h3>
+    <button  color="accent" (click)="addFirstName()">Add Name</button>
+    <br>
+    <div class="row" *ngFor="let name of firstName.controls; let i=index">
+      <div class="col">
+          <input type="text" placeholder="Name" [formControlName]="i">
+      </div>
+    </div>
+  </div>
+<br>
+  <div class="row">
+        <div class="col">
+            <input type="text"  placeholder="Last name" formControlName="lastName" required>
+          <div *ngIf="userForm.controls.lastName.errors?.NotName">Your last name can't be Amadeusz</div>
+        </div>
+      </div>
+      <button  color="blue" type="submit"  [disabled]="!userForm.valid">
+          Submit
+        </button>
+        <span> Form Status: {{ userForm.status }}</span>
+</form>
